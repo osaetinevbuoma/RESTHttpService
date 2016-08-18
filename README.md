@@ -4,12 +4,12 @@ The RESTHttpService provides methods in Java for making HTTP or HTTPS requests t
 
 ### How do I get set up? ###
 
-You can download the source code and using a gradle, build the source code and generate a jar file. Place the jar file in your project's library folder, import the jar file using your IDE or a build tool like gradle.
+You can download the source code and using Gradle or other build tool, build the source code and generate a jar file. Place the jar file in your project's library folder, import the jar file using your IDE or a build tool.
 
 #### From source code ####
 * Download source code zip folder
 * Unzip source folder
-* Build the project with gradle and generate jar file
+* Build the project with Gradle and generate jar file
 ```
 #!
 
@@ -58,7 +58,7 @@ public class MyClass {
         headerParams.put("Accept", "application/json");
 
         JSONObject bodyParams = new JSONObject();
-        // Put as many body parameters as desired for **post** and **put** requests
+        // Put as many body parameters as desired for post and put requests
         bodyParams.put("body", "Some content");
 
         boolean ssl = false;
