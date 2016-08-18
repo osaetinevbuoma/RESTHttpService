@@ -25,7 +25,23 @@ gradle jar
 * Import into your project classpath via IDE or build tool
 
 ### Usage ###
-Follow the instructions to make http requests to remote servers.
+Code signature for **post** and **put** requests:
+
+```
+#!java
+
+JsonHttpService.post/put(String remoteUrl, Map<String, String> headerParameters, String bodyParameters, boolean sslConnection)
+```
+
+Code signature for **get** and **delete** requests:
+
+```
+#!java
+
+JsonHttpService.get/delete(String remoteUrl, Map<String, String> headerParameters, boolean sslConnection)
+```
+
+Example:
 
 ```
 #!java
@@ -37,28 +53,30 @@ public class MyClass {
         String address = "http://example.com/";
 
         Map<String, String> headerParams = new HashMap<String, String>();
+        // Put as many header parameters as you desire
         headerParams.put("Content-Type", "application/json");
         headerParams.put("Accept", "application/json");
 
         JSONObject bodyParams = new JSONObject();
+        // Put as many body parameters as desired for **post** and **put** requests
         bodyParams.put("body", "Some content");
 
         boolean ssl = false;
 
         // HTTP POST request
-        JSONObject postResponse = com.modnsolutions.JsonHttpService.post(address + "/post", headerParams, bodyParams.toString(), ssl);
+        JSONObject postResponse = JsonHttpService.post(address + "/post", headerParams, bodyParams.toString(), ssl);
         System.out.println(postResponse.toString());
 
         // HTTP PUT request
-        JSONObject putResponse = com.modnsolutions.JsonHttpService.put(address + "/put", headerParams, bodyParams.toString(), ssl);
+        JSONObject putResponse = JsonHttpService.put(address + "/put", headerParams, bodyParams.toString(), ssl);
         System.out.println(putResponse.toString());
 
         // HTTP GET request
-        JSONObject getResponse = com.modnsolutions.JsonHttpService.get(address + "/get/1", headerParams, ssl);
+        JSONObject getResponse = JsonHttpService.get(address + "/get/1", headerParams, ssl);
         System.out.println(getResponse.toString());
 
         // HTTP DELETE request
-        JSONObject deleteResponse = com.modnsolutions.JsonHttpService.delete(address + "/delete/1", headerParams, ssl);
+        JSONObject deleteResponse = JsonHttpService.delete(address + "/delete/1", headerParams, ssl);
         System.out.println(deleteResponse.toString());
     }
 }
