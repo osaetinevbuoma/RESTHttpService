@@ -1,0 +1,14 @@
+apply plugin: "java"
+apply plugin: "idea"
+apply plugin: "eclipse"
+
+version = "1.0"
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.grails.org/grails/core" }
+}
+
+dependencies {
+    compile group: "org.grails", name: "grails-web", version: "3.2.0.M2"
+}
