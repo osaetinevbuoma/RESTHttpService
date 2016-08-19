@@ -1,3 +1,17 @@
+buildscript {
+    ext {
+        grailsVersion = project.grailsVersion
+    }
+    repositories {
+        mavenLocal()
+        maven { url "https://repo.grails.org/grails/core" }
+    }
+    dependencies {
+        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
+        classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.8.2"
+    }
+}
+
 plugins {
     id "com.jfrog.bintray" version "1.7"
 }
@@ -5,45 +19,34 @@ plugins {
 apply plugin: "java"
 apply plugin: "idea"
 apply plugin: "eclipse"
+apply plugin:"org.grails.grails-plugin-publish"
 
-version = "1.1"
+version = "0.1"
+group "com.modnsolutions"
 
 repositories {
     mavenCentral()
     maven { url "https://repo.grails.org/grails/core" }
-    maven { url "https://dl.bintray.com/modnsolutions/REST-HTTP-Service" }
 }
 
 dependencies {
     compile group: "org.grails", name: "grails-web", version: "3.2.0.M2"
 }
 
-bintray {
+grailsPublish {
     user = project.hasProperty("user") ? project.property("user") : System.getenv("BINTRAY_USER")
-    key = project.hasProperty("key") ? project.property("key") : System.getenv("BINTRAY_API_KEY")
-    configurations = ["archives"]
-    //publications = ["MyMavenPublication"]
-    pkg {
-        repo = "REST-HTTP-Service"
-        name = "rest-http-service"
-        userOrg = "modnsolutions"
-        vcsUrl = "https://github.com/osaetinevbuoma/RESTHttpService.git"
-        labels = ["http", "rest", "java"]
-        version {
-            name = "1.1-Final"
-            desc = "REST Http Service Plugin 1.1 Final"
-        }
+    key = project.hasProperty("key") ? project.property("key") : System.getenv("BINTRAY_KEY")
+    githubSlug = "osaetinevbuoma/RESTHttpService"
+    vcsUrl = "https://github.com/osaetinevbuoma/RESTHttpService"
+    userOrg = "modnsolutions"
+    repo = "java-libraries"
+    license {
+        name = 'Apache-2.0'
     }
+    title = "REST Http Service Library"
+    desc = "REST Http Service Library"
+    developers = [osaetinevbuoma:"Osaetin Evbuoma"]
+    /*portalUser = ""
+    portalPassword = ""   */
 }
 
-/*
-publishing {
-    publications {
-        MyMavenPublication(MavenPublication) {
-            from components.java
-            groupId "com.modnsolutions"
-            artifactId "rest-http-service"
-            version "1.0"
-        }
-    }
-}*/

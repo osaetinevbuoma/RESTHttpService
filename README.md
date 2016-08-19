@@ -11,8 +11,6 @@ You can download the source code and using Gradle or other build tool, build the
 * Unzip source folder
 * Build the project with Gradle and generate jar file
 ```
-#!
-
 cd [source_folder]
 gradle build
 gradle jar
@@ -28,24 +26,18 @@ gradle jar
 Code signature for **post** and **put** requests:
 
 ```
-#!java
-
 JsonHttpService.post/put(String remoteUrl, Map<String, String> headerParameters, String bodyParameters, boolean sslConnection)
 ```
 
 Code signature for **get** and **delete** requests:
 
 ```
-#!java
-
 JsonHttpService.get/delete(String remoteUrl, Map<String, String> headerParameters, boolean sslConnection)
 ```
 
 Example:
 
 ```
-#!java
-
 import com.modnsolutions.JsonHttpService;
 
 public class MyClass {
