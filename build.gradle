@@ -1,14 +1,49 @@
+plugins {
+    id "com.jfrog.bintray" version "1.7"
+}
+
 apply plugin: "java"
 apply plugin: "idea"
 apply plugin: "eclipse"
 
-version = "1.0"
+version = "1.1"
 
 repositories {
     mavenCentral()
     maven { url "https://repo.grails.org/grails/core" }
+    maven { url "https://dl.bintray.com/modnsolutions/REST-HTTP-Service" }
 }
 
 dependencies {
     compile group: "org.grails", name: "grails-web", version: "3.2.0.M2"
 }
+
+bintray {
+    user = project.hasProperty("user") ? project.property("user") : System.getenv("BINTRAY_USER")
+    key = project.hasProperty("key") ? project.property("key") : System.getenv("BINTRAY_API_KEY")
+    configurations = ["archives"]
+    //publications = ["MyMavenPublication"]
+    pkg {
+        repo = "REST-HTTP-Service"
+        name = "rest-http-service"
+        userOrg = "modnsolutions"
+        vcsUrl = "https://github.com/osaetinevbuoma/RESTHttpService.git"
+        labels = ["http", "rest", "java"]
+        version {
+            name = "1.1-Final"
+            desc = "REST Http Service Plugin 1.1 Final"
+        }
+    }
+}
+
+/*
+publishing {
+    publications {
+        MyMavenPublication(MavenPublication) {
+            from components.java
+            groupId "com.modnsolutions"
+            artifactId "rest-http-service"
+            version "1.0"
+        }
+    }
+}*/

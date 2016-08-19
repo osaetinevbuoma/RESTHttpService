@@ -175,3 +175,4 @@ cwallet.sso.lck### Java template
 hs_err_pid*
 
 /src/test/
+/RESTHttpService.iml

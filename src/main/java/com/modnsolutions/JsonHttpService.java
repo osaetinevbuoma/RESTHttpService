@@ -21,6 +21,7 @@ import java.util.Map;
 public class JsonHttpService {
     private static final String USER_AGENT = "Mozilla/5.0";
     private static final String CHARSET = "UTF-8";
+    private static final String CONTENT_TYPE = "application/json";
     private static JSONObject jsonObject;
 
     /**
@@ -39,6 +40,8 @@ public class JsonHttpService {
         httpURLConnection.setRequestProperty("User-Agent", USER_AGENT);
         httpURLConnection.setRequestProperty("Accept-Charset", CHARSET);
         httpURLConnection.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+        httpURLConnection.setRequestProperty("Accept", CONTENT_TYPE);
+        httpURLConnection.setRequestProperty("Content-Type", CONTENT_TYPE);
 
         for (Map.Entry<String, String> entry : headers.entrySet()) {
             httpURLConnection.setRequestProperty(entry.getKey(), entry.getValue());
@@ -66,6 +69,8 @@ public class JsonHttpService {
         httpsURLConnection.setRequestProperty("User-Agent", USER_AGENT);
         httpsURLConnection.setRequestProperty("Accept-Charset", CHARSET);
         httpsURLConnection.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+        httpsURLConnection.setRequestProperty("Accept", CONTENT_TYPE);
+        httpsURLConnection.setRequestProperty("Content-Type", CONTENT_TYPE);
 
         for (Map.Entry<String, String> entry : headers.entrySet()) {
             httpsURLConnection.setRequestProperty(entry.getKey(), entry.getValue());
