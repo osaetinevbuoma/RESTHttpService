@@ -4,38 +4,35 @@ The RESTHttpService provides methods in Java for making HTTP or HTTPS requests t
 
 ### How do I get set up? ###
 
-You can download the source code and using Gradle or other build tool, build the source code and generate a jar file. Place the jar file in your project's library folder, import the jar file using your IDE or a build tool.
-
-#### From source code ####
-* Download source code zip folder
-* Unzip source folder
-* Build the project with Gradle and generate jar file
+Simply include the following lines of code in your `build.gradle` file.
 ```
-cd [source_folder]
-gradle build
-gradle jar
-```
-* In your JVM project, create a folder (libs) and place generated jar file
-* Import jar file into your project dependencies, build script or IDE
+repositories {
+    maven {
+        url  "http://dl.bintray.com/modnsolutions/plugins-libraries" 
+    }
+}
 
-#### Jar file ####
-* Download jar file into your project's library folder
-* Import into your project classpath via IDE or build tool
+dependencies {
+    compile "com.modnsolutions:RESTHttpService:1.0"
+}
+```
 
 ### Usage ###
 Code signature for **post** and **put** requests:
 
 ```
-JsonHttpService.post/put(String remoteUrl, Map<String, String> headerParameters, String bodyParameters, boolean sslConnection)
+JsonHttpService.post(String remoteUrl, Map<String, String> headerParameters, String bodyParameters, boolean sslConnection)
+JsonHttpService.put(String remoteUrl, Map<String, String> headerParameters, String bodyParameters, boolean sslConnection)
 ```
 
 Code signature for **get** and **delete** requests:
 
 ```
-JsonHttpService.get/delete(String remoteUrl, Map<String, String> headerParameters, boolean sslConnection)
+JsonHttpService.get(String remoteUrl, Map<String, String> headerParameters, boolean sslConnection)
+JsonHttpService.delete(String remoteUrl, Map<String, String> headerParameters, boolean sslConnection)
 ```
 
-Example:
+### Example: ###
 
 ```
 import com.modnsolutions.JsonHttpService;
