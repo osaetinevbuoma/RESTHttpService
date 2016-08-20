@@ -21,7 +21,7 @@ apply plugin: "idea"
 apply plugin: "eclipse"
 apply plugin:"org.grails.grails-plugin-publish"
 
-version = "0.1"
+version "1.0"
 group "com.modnsolutions"
 
 repositories {
@@ -39,7 +39,7 @@ grailsPublish {
     githubSlug = "osaetinevbuoma/RESTHttpService"
     vcsUrl = "https://github.com/osaetinevbuoma/RESTHttpService"
     userOrg = "modnsolutions"
-    repo = "java-libraries"
+    repo = "plugins-libraries"
     license {
         name = 'Apache-2.0'
     }
