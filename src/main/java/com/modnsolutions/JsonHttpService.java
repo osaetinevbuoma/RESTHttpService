@@ -43,8 +43,10 @@ public class JsonHttpService {
         httpURLConnection.setRequestProperty("Accept", CONTENT_TYPE);
         httpURLConnection.setRequestProperty("Content-Type", CONTENT_TYPE);
 
-        for (Map.Entry<String, String> entry : headers.entrySet()) {
-            httpURLConnection.setRequestProperty(entry.getKey(), entry.getValue());
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                httpURLConnection.setRequestProperty(entry.getKey(), entry.getValue());
+            }
         }
 
         httpURLConnection.setDoOutput(true);
@@ -72,8 +74,10 @@ public class JsonHttpService {
         httpsURLConnection.setRequestProperty("Accept", CONTENT_TYPE);
         httpsURLConnection.setRequestProperty("Content-Type", CONTENT_TYPE);
 
-        for (Map.Entry<String, String> entry : headers.entrySet()) {
-            httpsURLConnection.setRequestProperty(entry.getKey(), entry.getValue());
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                httpsURLConnection.setRequestProperty(entry.getKey(), entry.getValue());
+            }
         }
 
         httpsURLConnection.setDoOutput(true);

@@ -21,6 +21,7 @@ dependencies {
 Code signature for **post** and **put** requests:
 
 ```
+// headerParameters can be set as null if extra headers are not needed
 JsonHttpService.post(String remoteUrl, Map<String, String> headerParameters, String bodyParameters, boolean sslConnection)
 JsonHttpService.put(String remoteUrl, Map<String, String> headerParameters, String bodyParameters, boolean sslConnection)
 ```
@@ -28,6 +29,7 @@ JsonHttpService.put(String remoteUrl, Map<String, String> headerParameters, Stri
 Code signature for **get** and **delete** requests:
 
 ```
+// headerParameters can be set as null if extra headers are not needed
 JsonHttpService.get(String remoteUrl, Map<String, String> headerParameters, boolean sslConnection)
 JsonHttpService.delete(String remoteUrl, Map<String, String> headerParameters, boolean sslConnection)
 ```
