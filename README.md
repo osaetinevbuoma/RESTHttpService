@@ -1,4 +1,4 @@
-# RESTHttpService #
+# RESTHttpService [![Build Status](https://travis-ci.org/osaetinevbuoma/RESTHttpService.svg?branch=master)](https://travis-ci.org/osaetinevbuoma/RESTHttpService) #
 
 The RESTHttpService provides methods in Java for making HTTP or HTTPS requests to remote servers or APIs. Responses from requests are returned as JSON objects.
 
