@@ -1,52 +1,67 @@
 buildscript {
-    ext {
-        grailsVersion = project.grailsVersion
-    }
     repositories {
-        mavenLocal()
-        maven { url "https://repo.grails.org/grails/core" }
+        jcenter()
     }
+
     dependencies {
-        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
-        classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.8.2"
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.+'
     }
 }
 
 plugins {
-    id "com.jfrog.bintray" version "1.7"
+    id 'java'
 }
 
-apply plugin: "java"
-apply plugin: "idea"
-apply plugin: "eclipse"
-apply plugin:"org.grails.grails-plugin-publish"
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
-version "1.0"
-group "com.modnsolutions"
+group 'com.modnsolutions'
+version '1.1'
+
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
-    maven { url "https://repo.grails.org/grails/core" }
 }
 
 dependencies {
-    compile group: "org.grails", name: "grails-web", version: "3.2.0.M2"
+    implementation group: 'org.json', name: 'json', version: '20180813'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
-grailsPublish {
-    user = project.hasProperty("user") ? project.property("user") : System.getenv("BINTRAY_USER")
-    key = project.hasProperty("key") ? project.property("key") : System.getenv("BINTRAY_KEY")
-    githubSlug = "osaetinevbuoma/RESTHttpService"
-    vcsUrl = "https://github.com/osaetinevbuoma/RESTHttpService"
-    userOrg = "modnsolutions"
-    repo = "plugins-libraries"
-    license {
-        name = 'Apache-2.0'
+Properties properties = new Properties()
+def propertiesFile = project.rootProject.file('local.properties')
+properties.load(propertiesFile.newDataInputStream())
+
+publishing {
+    publications {
+        RESTHttpServicePublication(MavenPublication) {
+            from components.java
+            groupId 'com.modnsolutions'
+            artifactId 'RESTHttpService'
+            version '1.1'
+        }
     }
-    title = "REST Http Service Library"
-    desc = "REST Http Service Library"
-    developers = [osaetinevbuoma:"Osaetin Evbuoma"]
-    /*portalUser = ""
-    portalPassword = ""   */
 }
 
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.key")
+    publications = ['RESTHttpServicePublication']
+    pkg {
+        githubRepo = "osaetinevbuoma/RESTHttpService"
+        vcsUrl = "https://github.com/osaetinevbuoma/RESTHttpService"
+        websiteUrl = "https://github.com/osaetinevbuoma/RESTHttpService"
+        userOrg = "modnsolutions"
+        repo = "plugins-libraries"
+        name = "RESTHttpService"
+        licenses = ['Apache-2.0']
+        desc = "REST Http Service Library"
+        publish = true
+        override = true
+        version {
+            name = "1.1"
+        }
+    }
+}

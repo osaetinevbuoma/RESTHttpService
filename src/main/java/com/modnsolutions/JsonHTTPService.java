@@ -1,7 +1,7 @@
 package com.modnsolutions;
 
-import org.grails.web.json.JSONException;
-import org.grails.web.json.JSONObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
@@ -9,16 +9,15 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 
 /**
  * Created by Osaetin Evbuoma (osaetinevbuoma@gmail.com).
- *
+ * <p>
  * Make JSON HTTP Requests to remote servers
  */
-public class JsonHttpService {
+public class JsonHTTPService {
     private static final String USER_AGENT = "Mozilla/5.0";
     private static final String CHARSET = "UTF-8";
     private static final String CONTENT_TYPE = "application/json";
@@ -27,10 +26,10 @@ public class JsonHttpService {
     /**
      * Set header http parameters
      *
-     * @param url       Remote URL
-     * @param headers   Header parameters
-     * @param method    HTTP method
-     * @return  HttpURLConnection
+     * @param url     Remote URL
+     * @param headers Header parameters
+     * @param method  HTTP method
+     * @return HttpURLConnection
      * @throws IOException
      */
     private static HttpURLConnection setHeaders(URL url, Map<String, String> headers,
@@ -58,10 +57,10 @@ public class JsonHttpService {
     /**
      * Set header http parameters for secure connections
      *
-     * @param url       Remote URL
-     * @param headers   Header parameters
-     * @param method    HTTP method
-     * @return  HttpURLConnection
+     * @param url     Remote URL
+     * @param headers Header parameters
+     * @param method  HTTP method
+     * @return HttpURLConnection
      * @throws IOException
      */
     private static HttpsURLConnection setSecureHeaders(URL url, Map<String, String> headers,
@@ -89,8 +88,8 @@ public class JsonHttpService {
     /**
      * Push output data stream depending on the connection type
      *
-     * @param h             http url connection object
-     * @param body          body content to post or push
+     * @param h    http url connection object
+     * @param body body content to post or push
      * @throws IOException
      */
     private static void outputDataStream(Object h, String body) throws IOException {
@@ -112,7 +111,7 @@ public class JsonHttpService {
     /**
      * Buffer response data and parse to json format
      *
-     * @param h             http url connection type
+     * @param h http url connection type
      * @return JSONObject
      * @throws IOException
      */
@@ -148,12 +147,12 @@ public class JsonHttpService {
     /**
      * Make a HTTP POST request to a remote server
      *
-     * @param address       Server url address e.g. http://example.com/
-     * @param headerParams  Header parameters
-     * @param bodyParams    Body content
-     * @param ssl           Send over http or https connection (note ssl set to true means address
-     *                      must be https)
-     * @return  jsonObject  JSON response from remote server
+     * @param address      Server url address e.g. http://example.com/
+     * @param headerParams Header parameters
+     * @param bodyParams   Body content
+     * @param ssl          Send over http or https connection (note ssl set to true means address
+     *                     must be https)
+     * @return jsonObject  JSON response from remote server
      */
     public static JSONObject post(String address, Map<String, String> headerParams,
                                   String bodyParams, boolean ssl) {
@@ -174,13 +173,7 @@ public class JsonHttpService {
                     jsonObject = bufferResponse(httpURLConnection);
                 }
             }
-        } catch (MalformedURLException ex) {
-            System.out.println(ex.getMessage());
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        } catch (JSONException ex) {
-            System.out.println(ex.getMessage());
-        } catch (IllegalStateException ex) {
+        } catch (IOException | JSONException | IllegalStateException ex) {
             System.out.println(ex.getMessage());
         }
 
@@ -190,12 +183,12 @@ public class JsonHttpService {
     /**
      * Make a HTTP PUT request to a remote server
      *
-     * @param address       Server url address e.g. http://example.com/
-     * @param headerParams  Header parameters
-     * @param bodyParams    Body content
-     * @param ssl           Send over http or https connection (note ssl set to true means address
-     *                      must be https)
-     * @return  jsonObject  JSON response from remote server
+     * @param address      Server url address e.g. http://example.com/
+     * @param headerParams Header parameters
+     * @param bodyParams   Body content
+     * @param ssl          Send over http or https connection (note ssl set to true means address
+     *                     must be https)
+     * @return jsonObject  JSON response from remote server
      */
     public static JSONObject put(String address, Map<String, String> headerParams,
                                  String bodyParams, boolean ssl) {
@@ -215,13 +208,7 @@ public class JsonHttpService {
                     jsonObject = bufferResponse(httpURLConnection);
                 }
             }
-        } catch (MalformedURLException ex) {
-            System.out.println(ex.getMessage());
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        } catch (JSONException ex) {
-            System.out.println(ex.getMessage());
-        } catch (IllegalStateException ex) {
+        } catch (IOException | JSONException | IllegalStateException ex) {
             System.out.println(ex.getMessage());
         }
 
@@ -231,11 +218,11 @@ public class JsonHttpService {
     /**
      * Make a HTTP GET request to a remote server
      *
-     * @param address       Server url address e.g. http://example.com/:param
-     * @param headerParams  Header parameters
-     * @param ssl           Send over http or https connection (note ssl set to true means address
-     *                      must be https)
-     * @return  jsonObject  JSON response from remote server
+     * @param address      Server url address e.g. http://example.com/:param
+     * @param headerParams Header parameters
+     * @param ssl          Send over http or https connection (note ssl set to true means address
+     *                     must be https)
+     * @return jsonObject  JSON response from remote server
      */
     public static JSONObject get(String address, Map<String, String> headerParams, boolean ssl) {
         try {
@@ -252,11 +239,7 @@ public class JsonHttpService {
                     jsonObject = bufferResponse(httpURLConnection);
                 }
             }
-        } catch (MalformedURLException ex) {
-            System.out.println(ex.getMessage());
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        } catch (JSONException ex) {
+        } catch (IOException | JSONException ex) {
             System.out.println(ex.getMessage());
         }
 
@@ -266,11 +249,11 @@ public class JsonHttpService {
     /**
      * Make a HTTP DELETE request to a remote server
      *
-     * @param address       Server url address e.g. http://example.com/:param
-     * @param headerParams  Header parameters
-     * @param ssl           Send over http or https connection (note ssl set to true means address
-     *                      must be https)
-     * @return  jsonObject  JSON response from remote server
+     * @param address      Server url address e.g. http://example.com/:param
+     * @param headerParams Header parameters
+     * @param ssl          Send over http or https connection (note ssl set to true means address
+     *                     must be https)
+     * @return jsonObject  JSON response from remote server
      */
     public static JSONObject delete(String address, Map<String, String> headerParams, boolean ssl) {
         try {
@@ -287,11 +270,7 @@ public class JsonHttpService {
                     jsonObject = bufferResponse(httpURLConnection);
                 }
             }
-        } catch (MalformedURLException ex) {
-            System.out.println(ex.getMessage());
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        } catch (JSONException ex) {
+        } catch (IOException | JSONException ex) {
             System.out.println(ex.getMessage());
         }
 

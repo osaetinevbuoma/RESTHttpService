@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    compile "com.modnsolutions:RESTHttpService:1.0"
+    compile "com.modnsolutions:RESTHttpService:1.*"
 }
 ```
 
@@ -37,7 +37,7 @@ JsonHttpService.delete(String remoteUrl, Map<String, String> headerParameters, b
 ### Example: ###
 
 ```
-import com.modnsolutions.JsonHttpService;
+import com.modnsolutions.JsonHTTPService;
 
 public class MyClass {
     public static void main(String[] args) {
