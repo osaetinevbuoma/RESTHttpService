@@ -32,7 +32,9 @@ dependencies {
 
 Properties properties = new Properties()
 def propertiesFile = project.rootProject.file('local.properties')
-properties.load(propertiesFile.newDataInputStream())
+if (propertiesFile.exists()) {
+    properties.load(propertiesFile.newDataInputStream())
+}
 
 publishing {
     publications {
@@ -46,9 +48,9 @@ publishing {
 }
 
 bintray {
-    user = propertiesFile.exists() ? properties.getProperty("bintray.user") : 
+    user = propertiesFile.exists() ? properties.getProperty("bintray_user") :
             System.getenv('bintray.user')
-    key = propertiesFile.exists() ? properties.getProperty("bintray.key") : 
+    key = propertiesFile.exists() ? properties.getProperty("bintray_key") :
             System.getenv('bintray.key')
     publications = ['RESTHttpServicePublication']
     pkg {
