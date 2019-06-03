@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    compile "com.modnsolutions:RESTHttpService:1.*"
+    compile "com.modnsolutions:RESTHttpService:1.1"
 }
 ```
 
@@ -22,16 +22,16 @@ Code signature for **post** and **put** requests:
 
 ```
 // headerParameters can be set as null if extra headers are not needed
-JsonHttpService.post(String remoteUrl, Map<String, String> headerParameters, String bodyParameters, boolean sslConnection)
-JsonHttpService.put(String remoteUrl, Map<String, String> headerParameters, String bodyParameters, boolean sslConnection)
+JsonHTTPService.post(String remoteUrl, Map<String, String> headerParameters, String bodyParameters, boolean sslConnection)
+JsonHTTPService.put(String remoteUrl, Map<String, String> headerParameters, String bodyParameters, boolean sslConnection)
 ```
 
 Code signature for **get** and **delete** requests:
 
 ```
 // headerParameters can be set as null if extra headers are not needed
-JsonHttpService.get(String remoteUrl, Map<String, String> headerParameters, boolean sslConnection)
-JsonHttpService.delete(String remoteUrl, Map<String, String> headerParameters, boolean sslConnection)
+JsonHTTPService.get(String remoteUrl, Map<String, String> headerParameters, boolean sslConnection)
+JsonHTTPService.delete(String remoteUrl, Map<String, String> headerParameters, boolean sslConnection)
 ```
 
 ### Example: ###
@@ -55,19 +55,19 @@ public class MyClass {
         boolean ssl = false;
 
         // HTTP POST request
-        JSONObject postResponse = JsonHttpService.post(address + "/post", headerParams, bodyParams.toString(), ssl);
+        JSONObject postResponse = JsonHTTPService.post(address + "/post", headerParams, bodyParams.toString(), ssl);
         System.out.println(postResponse.toString());
 
         // HTTP PUT request
-        JSONObject putResponse = JsonHttpService.put(address + "/put", headerParams, bodyParams.toString(), ssl);
+        JSONObject putResponse = JsonHTTPService.put(address + "/put", headerParams, bodyParams.toString(), ssl);
         System.out.println(putResponse.toString());
 
         // HTTP GET request
-        JSONObject getResponse = JsonHttpService.get(address + "/get/1", headerParams, ssl);
+        JSONObject getResponse = JsonHTTPService.get(address + "/get/1", headerParams, ssl);
         System.out.println(getResponse.toString());
 
         // HTTP DELETE request
-        JSONObject deleteResponse = JsonHttpService.delete(address + "/delete/1", headerParams, ssl);
+        JSONObject deleteResponse = JsonHTTPService.delete(address + "/delete/1", headerParams, ssl);
         System.out.println(deleteResponse.toString());
     }
 }
