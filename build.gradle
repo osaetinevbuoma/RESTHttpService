@@ -48,10 +48,10 @@ publishing {
 }
 
 bintray {
-    user = propertiesFile.exists() ? properties.getProperty("bintray_user") :
-            System.getenv('bintray.user')
-    key = propertiesFile.exists() ? properties.getProperty("bintray_key") :
-            System.getenv('bintray.key')
+    user = propertiesFile.exists() ? properties.getProperty("bintray.user") :
+            System.getenv('bintray_user')
+    key = propertiesFile.exists() ? properties.getProperty("bintray.key") :
+            System.getenv('bintray_key')
     publications = ['RESTHttpServicePublication']
     pkg {
         githubRepo = "osaetinevbuoma/RESTHttpService"
