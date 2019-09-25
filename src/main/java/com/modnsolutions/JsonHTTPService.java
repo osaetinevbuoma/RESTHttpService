@@ -255,20 +255,17 @@ public class JsonHTTPService {
      *                     must be https)
      * @return jsonObject  JSON response from remote server
      */
-    public static JSONObject delete(String address, Map<String, String> headerParams,
-                                    String bodyParams, boolean ssl) {
+    public static JSONObject delete(String address, Map<String, String> headerParams, boolean ssl) {
         try {
             URL url = new URL(address);
 
             if (ssl) {
                 HttpsURLConnection httpsURLConnection = setSecureHeaders(url, headerParams, "DELETE");
-                outputDataStream(httpsURLConnection, bodyParams);
                 if (httpsURLConnection.getResponseCode() == 200) {
                     jsonObject = bufferResponse(httpsURLConnection);
                 }
             } else {
                 HttpURLConnection httpURLConnection = setHeaders(url, headerParams, "DELETE");
-                outputDataStream(httpURLConnection, bodyParams);
                 if (httpURLConnection.getResponseCode() == 200) {
                     jsonObject = bufferResponse(httpURLConnection);
                 }
